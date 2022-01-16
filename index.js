@@ -19,101 +19,125 @@ const possibleBingos = [
 ];
 
 const ogData = [
-	{	
-		name: "Slack",
+	{
+		name: "China Bans",
 		isClicked: false,
+		link: "https://cointelegraph.com/news/crypto-has-recovered-from-china-s-fud-nearly-two-dozen-times-in-the-last-12-years",
 	},
 	{
-		name: "A major cryptocurrency service",
+		name: "Wastes Energy",
 		isClicked: false,
+		link: "https://nakamotoinstitute.org/mempool/bitcoin-does-not-waste-energy/",
 	},
 	{
-		name: "A major ISP / telecom company",
+		name: "The Tether Time Bomb",
 		isClicked: false,
+		link: "https://www.theheldreport.com/p/dont-fear-tether",
 	},
 	{
-		name: "Cloudflare",
+		name: "Used by Crimnals",
 		isClicked: false,
+		link: "https://www.forbes.com/sites/haileylennon/2021/01/19/the-false-narrative-of-bitcoins-role-in-illicit-activity/?sh=49c6f6643432"
 	},
 	{
-		name: "Google (main servers)",
+		name: "Muh Tulips",
 		isClicked: false,
+		link: "https://twitter.com/cobie/status/952589122077691904?s=20"
 	},
 	{
-		name: "Twitter",
+		name: "Government Shutdown",
 		isClicked: false,
+		link: "https://casebitcoin.com/critiques/gov-will-shut-it-down"
 	},
 	{
-		name: "Tesla",
+		name: "Too Volatile",
 		isClicked: false,
+		link: "https://unchained.com/blog/bitcoin-is-not-too-volatile/"
 	},
 	{
-		name: "YouTube",
+		name: "Can be Replaced",
 		isClicked: false,
+		link: "https://jimmysong.medium.com/why-bitcoin-is-different-than-other-cryptocurrencies-e16b17d48b94"
 	},
 	{
-		name: "Reddit",
+		name: "Too Slow",
 		isClicked: false,
+		link: "https://medium.com/@nic__carter/its-the-settlement-assurances-stupid-5dcd1c3f4e41"
 	},
 	{
-		name: "Microsoft Azure",
+		name: "Can be Hacked",
 		isClicked: false,
+		link: "https://help.coinbase.com/en/coinbase/privacy-and-security/other/is-bitcoin-secure-has-the-bitcoin-network-ever-been-hacked"
 	},
 	{
-		name: "An antivirus / antimalware vendor",
+		name: "PoW is Wasteful",
 		isClicked: false,
+		link: "https://danhedl.medium.com/pow-is-efficient-aa3d442754d3"
 	},
 	{
-		name: "Dyn",
+		name: "Using all Electricity",
 		isClicked: false,
+		link: "https://github.com/libbitcoin/libbitcoin-system/wiki/Energy-Exhaustion-Fallacy"
 	},
 	{
-		name: "A government entity",
+		name: "More Energy than Visa, etc.",
 		isClicked: false,
+		link: "https://bitcoinmagazine.com/business/bitcoin-energy-use-compare-industry"
 	},
 	{
-		name: "A large DNS provider",
+		name: "Ponzi / Pyramid Scheme",
 		isClicked: false,
+		link: "https://nakamotoinstitute.org/mempool/bitcoin-is-not-a-pyramid-scheme/"
 	},
 	{
-		name: "Amazon / AWS",
+		name: "Unfair Wealth Distribution",
 		isClicked: false,
+		link: "https://danhedl.medium.com/bitcoins-distribution-was-fair-e2ef7bbbc892"
 	},
 	{
-		name: "Facebook / WhatsApp / Instagram",
+		name: "Some Inflation is Good",
 		isClicked: false,
+		link: "https://nakamotoinstitute.org/mempool/bitcoin-is-the-great-definancialization/"
 	},
 	{
-		name: "A major code hosting service (Github, PyPI, NPM, etc.)",
+		name: "Proof of Stake is Better",
 		isClicked: false,
+		link: "https://medium.com/@BobMcElrath/whats-wrong-with-proof-of-stake-77d4f370be15"
 	},
 	{
-		name: "Apple",
+		name: "Controlled by Miners",
 		isClicked: false,
+		link: "https://medium.com/hackernoon/bitcoin-miners-beware-invalid-blocks-need-not-apply-51c293ee278b"
 	},
 	{
-		name: "Google Cloud Platform",
+		name: "Backed by Nothing",
 		isClicked: false,
+		link: "https://nakamotoinstitute.org/mempool/bitcoin-is-not-backed-by-nothing/"
 	},
 	{
-		name: "Microsoft (main servers)",
+		name: "Quantum Computers",
 		isClicked: false,
+		link: "https://www.forbes.com/sites/rogerhuang/2020/12/21/heres-why-quantum-computing-will-not-break-cryptocurrencies/?sh=593b86ca167b"
 	},
 	{
-		name: "An entire TLD",
+		name: "When Block Rewards Stop Bitcoin Will Become Insecure",
 		isClicked: false,
+		link: "https://safehodl.github.io/failure/#block-rewards-will-stop"
 	},
 	{
-		name: "Other major CDN provider (Fastly, Akamai, etc.)",
+		name: "Blockstream Control",
 		isClicked: false,
+		link: "https://whalecalls.medium.com/fud-or-fact-blockstream-inc-is-the-main-force-behind-bitcoin-and-taken-over-160aed93c003"
 	},
 	{
-		name: "Twitch",
+		name: "Nation State Attacks",
 		isClicked: false,
+		link: "https://cryptonews.com/exclusives/why-a-state-attack-on-bitcoin-is-neither-likely-nor-likely-t-7513.htm"
 	},
 	{
-		name: "A major VPN service",
+		name: "Replaced by CBDCs",
 		isClicked: false,
+		link: "https://safehodl.github.io/failure/#central-bank-digital-currencies"
 	},
 ];
 
@@ -209,9 +233,15 @@ function random(seed) {
 	return x - Math.floor(x);
 }
 
-function createBingoCell(name, isClicked) {
+function createBingoCell(name, isClicked, link) {
 	const cell = document.createElement("td");
-	cell.innerText = name;
+	const a = document.createElement('a');
+	const linkText = document.createTextNode(name);
+	a.appendChild(linkText);
+	a.title = link;
+	a.href = link;
+	cell.appendChild(a);
+
 	if (isClicked) {
 		cell.className = "cell-checked";
 	} else {
@@ -261,7 +291,7 @@ const app = () => {
 			} else {
 				const cellData = shuffled.shift();
 				finalCard.push(cellData);
-				cell = createBingoCell(cellData.name, cellData.isClicked);
+				cell = createBingoCell(cellData.name, cellData.isClicked, cellData.link);
 			}
 			row.appendChild(cell);
 		}
@@ -271,14 +301,8 @@ const app = () => {
 
 	document.querySelector("body").appendChild(table);
 
-	const newCard = document.createElement("button");
-	newCard.innerText = "Get my own card";
-	newCard.onclick = () => {
-		redirectToNewCard();
-	};
-	document.querySelector("body").appendChild(newCard);
-
 	const cells = document.querySelectorAll("td");
+	let lastBingos = 0;
 	cells.forEach((cell) => {
 		cell.onclick = () => {
 			// don't touch the free space
@@ -288,22 +312,24 @@ const app = () => {
 			let numBingos = 0;
 			// Uncheck cell if it's already checked
 			if (cell.className === "cell-checked") {
-				finalCard.forEach((i) => {
-					if (i.name === cell.innerText) {
-						i.isClicked = false;
-					}
-				});
 				cell.className = "";
-			} else {
-				// find the cell in the finalCard and set it to checked
-				finalCard.forEach((i) => {
-					if (i.name === cell.innerText) {
-						i.isClicked = true;
+				for (let i = 0; i < finalCard.length; i++) {
+					if (finalCard[i].name === cell.innerText) {
+						finalCard[i].isClicked = false;
+						break;
 					}
-				});
+				}
+			} else {
 				cell.className = "cell-checked";
-				// Check if we have a bingo
+				// find the cell in the finalCard and set it to checked
+				for (let i = 0; i < finalCard.length; i++) {
+					if (finalCard[i].name === cell.innerText) {
+						finalCard[i].isClicked = true;
+						break;
+					}
+				}
 			}
+			// check for bingos
 			possibleBingos.forEach((line) => {
 				if (
 					line.every((index) => {
@@ -313,7 +339,11 @@ const app = () => {
 					numBingos++;
 			});
 			// Yay bingo!
-			if (numBingos > 0) {
+			if (numBingos === possibleBingos.length) {
+				// Lets add a little easter egg just in case we fill a card
+				const marquee = document.getElementById("bingo");
+				marquee.innerText = "🔥".repeat(500);
+			} else if (numBingos > lastBingos) {
 				setTimeout(() => {
 					confetti.addConfetti({
 						emojis: ["⚡️", "₿", "🚀", "🌕", "🔥"],
@@ -325,34 +355,40 @@ const app = () => {
 				marquee.innerText = `${numBingos} bingo${
 					numBingos > 1 ? "s" : ""
 				}`;
+				lastBingos = numBingos;
+			} else if (numBingos < lastBingos && numBingos !== 0) {
+				const marquee = document.getElementById("bingo");
+				marquee.classList.remove("invis");
+				marquee.innerText = `${numBingos} bingo${
+					numBingos > 1 ? "s" : ""
+				}`;
+				lastBingos = numBingos;
 			} else {
 				// no bingo :(
-				const marquee = document.getElementById("bingo");
-				marquee.classList.add("invis");
+				if (numBingos == 0) {
+					const marquee = document.getElementById("bingo");
+					marquee.classList.add("invis");
+					lastBingos = 0;
+				} else {
+					lastBingos = numBingos;
+				}
 			}
-
-			if (numBingos === possibleBingos.length) {
-				// Lets add a little easter egg just in case we fill a card
-				const marquee = document.getElementById("bingo");
-				marquee.innerText = "🔥".repeat(500);
-			}
-			return;
 		};
 	});
-	
-	const shareCard = document.createElement("button");
-	shareCard.innerText = "Share my Card";
-	shareCard.onclick = () => {
-		// iterate through each cell. if it's clicked, set the value of ogData to 1
-		// otherwise, set it to 0
-		cells.forEach((cell) => {
-			ogData.forEach((i) => {
-				if (i.name === cell.innerText) {
-					i.isClicked = cell.className === "cell-checked";
-				}
+
+	window.onload = () => {
+		shareCard = document.getElementById("share-button");
+		shareCard.onclick = function () {
+			// iterate through each cell. if it's clicked, set the value of ogData to 1
+			// otherwise, set it to 0
+			cells.forEach((cell) => {
+				ogData.forEach((i) => {
+					if (i.name === cell.innerText) {
+						i.isClicked = cell.className === "cell-checked";
+					}
+				});
 			});
-		});
-		getShareURL(params.seed, ogData);
+			getShareURL(params.seed, ogData);
+		};
 	};
-	document.querySelector("body").appendChild(shareCard);
 };

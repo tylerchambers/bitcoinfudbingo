@@ -31,11 +31,10 @@
 				border-radius: 8px;
 			}
 			td a {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 100%;
-				height: 100%;
+				padding-bottom: 0;
+				display: block;
+				justify-content: right;
+				align-items: right;
 			}
 			button {
 				cursor: pointer;
@@ -45,7 +44,7 @@
 				border: 1px #ccc solid;
 			}
 			.cell-checked {
-				background-color: aquamarine;
+				background-color: #FF9900;
 			}
 			#confetti {
 				position: fixed;
@@ -75,5 +74,7 @@
 		<h1>Bitcoin FUD Bingo</h1>
 		<script src="./index.js"></script>
 		<script>app();</script>
+		<button onclick="redirectToNewCard()">New Card</button>
+		<button id="share-button">Share Card</button>
 	</body>
 </html>
