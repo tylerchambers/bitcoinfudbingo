@@ -75,7 +75,7 @@ const ogData = [
 		link: "https://danhedl.medium.com/pow-is-efficient-aa3d442754d3"
 	},
 	{
-		name: "Using all Electricity",
+		name: "Using Up All The Electricity",
 		isClicked: false,
 		link: "https://github.com/libbitcoin/libbitcoin-system/wiki/Energy-Exhaustion-Fallacy"
 	},
@@ -281,11 +281,14 @@ const app = () => {
 			if (i === 2 && j === 2) {
 				// This is the free space
 				cell = document.createElement("td");
-				cell.innerText = "Free Space";
+				freetext = document.createElement("div")
+				freetext.id = "freetext"
+				freetext.innerText = "FREE"
+				cell.appendChild(freetext)
 				cell.id = "free-space";
 				cell.className = "cell-checked";
 				finalCard.push({
-					name: "Free Space",
+					name: "FREE",
 					isClicked: "free",
 				});
 			} else {
